@@ -1,0 +1,141 @@
+#> git-katas % cd basic-staging 
+#> basic-staging % ls
+README.md	setup.ps1	setup.sh
+#> basic-staging % source setup.sh
+Initialized empty Git repository in /Users/XXX/Projects/github/small-coding-dojo/git-katas/basic-staging/exercise/.git/
+Successfully configured local username and email
+Successfully disable local GPG signing
+[master (root-commit) 2ae5a73] 1
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file.txt
+Successfully unset local username and email
+Successfully unset local GPG signing
+#> exercise % ls
+file.txt
+#> exercise % echo 2 > file.txt 
+#> exercise % git add file.txt 
+#> exercise % git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   file.txt
+
+#> exercise % echo 3 > file.txt 
+#> exercise % git diff  
+diff --git a/file.txt b/file.txt
+index 0cfbf08..00750ed 100644
+--- a/file.txt
++++ b/file.txt
+@@ -1 +1 @@
+-2
++3
+#> exercise % git diff --staged
+diff --git a/file.txt b/file.txt
+index d00491f..0cfbf08 100644
+--- a/file.txt
++++ b/file.txt
+@@ -1 +1 @@
+-1
++2
+#> exercise % git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   file.txt
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   file.txt
+
+#> exercise % git restore --staged file.txt 
+#> exercise % git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   file.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+#> exercise % cat file.txt 
+3
+#> exercise % git diff
+diff --git a/file.txt b/file.txt
+index d00491f..00750ed 100644
+--- a/file.txt
++++ b/file.txt
+@@ -1 +1 @@
+-1
++3
+#> exercise % git add file.txt 
+#> exercise % git commit -m "with your favorite message"
+[master 6f3f1f7] with your favorite message
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+#> exercise % git log 
+commit 6f3f1f73023f394517b312fe13819a660af4ff8b (HEAD -> master)
+Author: Tugbay Atilla <Tugbay Atilla tugbayatilla@gmail.com>
+Date:   Thu Jun 9 17:35:25 2022 +0200
+
+    with your favorite message
+
+commit 2ae5a7361b85dcf6980a55f307ce801fe2d9abe9
+Author: git-katas trainer bot <git-katas@example.com>
+Date:   Thu Jun 9 17:25:58 2022 +0200
+
+    1
+#> exercise % git log --oneline
+6f3f1f7 (HEAD -> master) with your favorite message
+2ae5a73 1
+#> exercise % echo 4 > file.txt 
+#> exercise % cat file.txt 
+4
+#> exercise % git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   file.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+#> exercise % git restore file.txt 
+#> exercise % cat file.txt 
+3
+#> exercise % git status
+On branch master
+nothing to commit, working tree clean
+#> exercise % rm file.txt 
+#> exercise % git restore file.txt
+#> exercise % ls
+file.txt
+#> exercise % cat file.txt 
+3
+#> exercise % echo 4 > file.txt 
+#> exercise % git add file.txt 
+#> exercise % git status      
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   file.txt
+
+#> exercise % git restore file.txt 
+#> exercise % git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   file.txt
+
+#> exercise % cat file.txt 
+4
+#> exercise % git checkout
+M	file.txt
+#> exercise % git checkout file.txt 
+Updated 0 paths from the index
+#> exercise % git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   file.txt
+
+#> exercise % cat file.txt 
+4
+#> exercise % 
